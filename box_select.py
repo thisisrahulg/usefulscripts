@@ -1,3 +1,15 @@
+#!/usr/bin/env python3
+
+"""
+Author: Rahul G
+
+This is a script to select a box region from a 2D array. The return is the cutout box.
+
+
+"""
+
+
+
 import numpy as np
 import matplotlib.pyplot as plt
 from astropy.io import fits
@@ -63,6 +75,7 @@ class BoxSelector:
         plt.imshow(self.selected_data, cmap='viridis', interpolation='nearest')
         plt.title('Selected Region')
         plt.show()
+        return self.selected_data
 
 def plot_and_select(fits_file):
     # Read the FITS file
@@ -78,6 +91,7 @@ def plot_and_select(fits_file):
     box_selector = BoxSelector(ax, array)
 
     plt.show()
+    return box_selector
 
 if __name__ == "__main__":
     # Provide the path to your FITS file as a command-line argument
@@ -88,5 +102,5 @@ if __name__ == "__main__":
     fits_file_path = sys.argv[1] 
     
     # Call the function
-    plot_and_select(fits_file_path)
+    box_selected = plot_and_select(fits_file_path)
 
